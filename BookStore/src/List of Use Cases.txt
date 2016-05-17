@@ -1,0 +1,14 @@
+List of Use Cases (description located in the .docx file)
+-Log in
+-Log out
+-create account
+-forgot password
+-view recent orders
+-change account settings
+-search for books
+-display catalog
+-view book
+-add book to cart
+-view cart
+-remove from cart
+-checkout
