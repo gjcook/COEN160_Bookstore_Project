@@ -72,4 +72,12 @@ public class AccountList {
 		
 		return ret;
 	}
+	
+	public static void main(String args[]) {
+		AccountList list = new AccountList("accList.txt");
+		
+		System.out.println("printing inv:");
+		System.out.println(list.toString());
+		
+	}
 }
