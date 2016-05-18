@@ -1,26 +1,31 @@
 import java.util.List;
+import java.lang.System;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
-public class System {
+
+public class Sys {
 	private Account _activeUser;
 	private AccountList _userList;
 	private Inventory _inventory;
 	private Cart _cart;
 	private boolean _isLoggedIn;
+	private MainFrame _mainFrame;
 	//private Jpanel for screen. This will be the outermost JPanel
 	
 	
 	//Setting System to a singleton value, accessed by running System.sharedInstance();
-	private static System _singleton = new System();
+	private static Sys _singleton = new Sys();
 	
-	public static System sharedInstance() { return _singleton; }
+	public static Sys sharedInstance() { return _singleton; }
 	
-	private System() {
+	private Sys() {
 		_activeUser = null;
 		_cart = new Cart();
 		_isLoggedIn = false;
 		_inventory = new Inventory(getInvFilePath());
 		_userList = new AccountList(getAccFilePath());
+		_mainFrame = new MainFrame("Online Bookstore");
 	}
 	
 	private String getInvFilePath() { return "bookList.txt"; }
@@ -30,7 +35,10 @@ public class System {
 	public boolean logIn(String accountName, String password) {
 		if(_isLoggedIn == false) {
 			Account tempUser = _userList.lookupUsername(accountName);
-			tempUser.auth(password);
+			if(tempUser != null && tempUser.auth(password)) {
+				_activeUser = tempUser;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -48,5 +56,18 @@ public class System {
 		return false;
 	}
 
+	public List<Book> getBooks() {
+		return _inventory.getAllBooks();
+	}
 	
+	public static void main(String args[]) {
+		
+		Sys.sharedInstance().logIn("gcook","dad");
+		Sys.sharedInstance().logOut();
+		
+		Sys.sharedInstance().logOut();
+		
+		Sys.sharedInstance()._mainFrame.setScrollView(new ViewPanel(""));
+		
+	}
 }

@@ -14,7 +14,7 @@ public class Account implements CharSequence {
 	
 	public Account() {
 		_recentOrders = new ArrayList<Order>();
-		System.sharedInstance().addNewAccount(this);
+		Sys.sharedInstance().addNewAccount(this);
 	}
 	
 	public Account(
@@ -40,6 +40,10 @@ public class Account implements CharSequence {
 		return _password.equals(passwordToCheck);
 	}
 	
+	public String getID() {
+		return _username;
+	}
+	
 	public String toString() {
 		String ret = "";
 		ret += _username;
@@ -49,8 +53,11 @@ public class Account implements CharSequence {
 		ret += "\t" + _email;
 		ret += "\t" + _secretQuestion;
 		ret += "\t" + _secretAnswer;
-		for(Order o : _recentOrders) {
-			ret += "\t" + o;
+		
+		if(_recentOrders != null) {
+			for(Order o : _recentOrders) {
+				ret += "\t" + o;
+			}
 		}
 		
 		return ret;
@@ -65,8 +72,11 @@ public class Account implements CharSequence {
 		ret += "email:\t\t\t" + _email + "\n";
 		ret += "secretQuestion:\t\t" + _secretQuestion + "\n";
 		ret += "secretAnswer:\t\t" + _secretAnswer + "\n";
-		for(Order o : _recentOrders) {
-			ret += "Order\n" + o;
+		
+		if(_recentOrders != null) {
+			for(Order o : _recentOrders) {
+				ret += "Order\n" + o;
+			}
 		}
 		
 		return ret;

@@ -61,7 +61,13 @@ public class AccountList {
 		_accountList.remove(accountToRemove);
 	}
 	
-	public Account lookupUsername(String username) {
+	public Account lookupUsername(String username) {		
+		for(Account acc : _accountList) {
+			if(username.equals(acc.getID())) {
+				return acc;
+			}
+		}
+		
 		return null;
 	}
 	
@@ -94,12 +100,5 @@ public class AccountList {
 		}
 		
 		return ret;
-	}
-	
-	public static void main(String args[]) {
-		System.out.println("Running accountlist");
-		AccountList accList = new AccountList("accList.txt");
-		
-		accList.saveData("accList.txt");
 	}
 }
