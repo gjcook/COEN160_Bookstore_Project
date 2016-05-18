@@ -33,7 +33,7 @@ public class Book {
 		_title = tempArray[0];
 		_author = tempArray[1];
 		_description = tempArray[2];
-		_pages = Int.parseInt(tempArray[3]);
+		_pages = Integer.parseInt(tempArray[3]);
 		_publicationDate = tempArray[4];
 		_publisher = tempArray[5];
 		_pathToImage = tempArray[6];

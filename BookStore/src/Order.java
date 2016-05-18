@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.ArrayList; 
+import java.lang.System;
 
 public class Order {
 	private List<Book> _orderContents;
@@ -29,19 +31,19 @@ public class Order {
 	}
 	
 	public Order(String stringFromFile) {
-		String tempArray[] = stringFromFile.split("\");
+		String tempArray[] = stringFromFile.split("/");
 		
 		_addressLine1 = tempArray[0];
 		_addressLine2 = tempArray[1];
 		_addressLine2 = tempArray[2];
 		_orderContents = new ArrayList<Book>();
 		for(int i = 3; i < tempArray.length; i++) {
-			orderContents.add(tempArray[i]);
+			_orderContents.add(new Book(tempArray[i]));
 		}
 		
 		_subTotal = 0.0;
 		
-		for(Book b : _cartContents) {
+		for(Book b : _orderContents) {
 			_subTotal += b.getPrice();
 		}
 		
@@ -64,13 +66,15 @@ public class Order {
 	public String getaddressLine3() { return _addressLine3; }
 	
 	public String toString() {
-		System.out.println("address1:\t\t" + _addressLine1);
-		System.out.println("address2:\t\t" + _addressLine2);
-		System.out.println("address3:\t\t" + _addressLine3);
-		System.out.println("sub:\t\t" + _subTotal);
-		System.out.println("tax:\t\t" + _tax);
-		System.out.println("total:\t\t" + _total);
-		for(Book d : _orderContents) { System.out.println("Book:\n" + d); }
+		String ret = "";
+		ret += ("address1:\t\t" + _addressLine1);
+		ret += ("\naddress2:\t\t" + _addressLine2);
+		ret += ("\naddress3:\t\t" + _addressLine3);
+		ret += ("\nsub:\t\t" + _subTotal);
+		ret += ("\ntax:\t\t" + _tax);
+		ret += ("\ntotal:\t\t" + _total);
+		for(Book d : _orderContents) { ret += ("\nBook:\n" + d); }
 		
+		return ret;
 	}
 }

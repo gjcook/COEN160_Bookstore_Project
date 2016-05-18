@@ -43,4 +43,20 @@ public class Account {
 	public void saveCurrentSessionData() {
 		
 	}
+	
+	public String toString() {
+		String ret = "";
+		ret += "username:\t\t" + _username + "\n";
+		ret += "password:\t\t" + _password + "\n";
+		ret += "firstName:\t\t" + _firstName + "\n";
+		ret += "lastName:\t\t" + _lastName + "\n";
+		ret += "email:\t\t" + _email + "\n";
+		ret += "secretQuestion:\t\t" + _secretQuestion + "\n";
+		ret += "secretAnswer:\t\t" + _secretAnswer + "\n";
+		for(Order o : _recentOrders) {
+			ret += "Order\n" + o;
+		}
+		
+		return ret;
+	}
 }
