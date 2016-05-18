@@ -3,7 +3,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.System;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
 
 public class AccountList {
 	private List<Account> _accountList;
@@ -13,7 +19,7 @@ public class AccountList {
 		
 		if(filePath != "") {
 		    Scanner sc;
-		    String tempStr, tempStrArray[], orderTempStr, orderTempStrArray[];
+		    String tempStr, tempStrArray[];
 		    try {
 				sc = new Scanner(new FileReader(System.getProperty("user.dir") + "//src//" + filePath));
 			    while (sc.hasNextLine()){
@@ -63,6 +69,23 @@ public class AccountList {
 		return _accountList;
 	}
 	
+	public void saveData(String filePath){
+		File _old = new File(System.getProperty("user.dir") + "//src//" + filePath);
+		File _bak = new File(System.getProperty("user.dir") + "//src//" + filePath + ".bak");
+		
+		_old.renameTo(_bak);
+		_old = null;
+		
+		Path _new = Paths.get(System.getProperty("user.dir") + "//src//" + filePath);
+		
+		try {
+			Files.write(_new, _accountList, Charset.forName("UTF-8"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public String toString() {
 		String ret = "";
 		
@@ -74,10 +97,9 @@ public class AccountList {
 	}
 	
 	public static void main(String args[]) {
-		AccountList list = new AccountList("accList.txt");
+		System.out.println("Running accountlist");
+		AccountList accList = new AccountList("accList.txt");
 		
-		System.out.println("printing inv:");
-		System.out.println(list.toString());
-		
+		accList.saveData("accList.txt");
 	}
 }

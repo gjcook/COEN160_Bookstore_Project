@@ -35,9 +35,14 @@ public class System {
 		return false;
 	}
 	
+	public void addNewAccount(Account acc) {
+		_userList.addAccountToList(acc);
+		_userList.saveData(getAccFilePath());
+	}
+	
 	public boolean logOut() {
 		if(_isLoggedIn == true) {
-			_activeUser.saveCurrentSessionData();	//Might need to pass more stuff to this
+			_userList.saveData(getAccFilePath());	//Might need to pass more stuff to this
 			_isLoggedIn = false;
 		}
 		return false;

@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements CharSequence {
 	//What else do we need in account?
 	private List<Order> _recentOrders;
 	private String _username;
@@ -14,7 +14,7 @@ public class Account {
 	
 	public Account() {
 		_recentOrders = new ArrayList<Order>();
-		saveCurrentSessionData();
+		System.sharedInstance().addNewAccount(this);
 	}
 	
 	public Account(
@@ -40,17 +40,29 @@ public class Account {
 		return _password.equals(passwordToCheck);
 	}
 	
-	public void saveCurrentSessionData() {
+	public String toString() {
+		String ret = "";
+		ret += _username;
+		ret += "\t" + _password;
+		ret += "\t" + _firstName;
+		ret += "\t" + _lastName;
+		ret += "\t" + _email;
+		ret += "\t" + _secretQuestion;
+		ret += "\t" + _secretAnswer;
+		for(Order o : _recentOrders) {
+			ret += "\t" + o;
+		}
 		
+		return ret;
 	}
 	
-	public String toString() {
+	public String toReadableString() {
 		String ret = "";
 		ret += "username:\t\t" + _username + "\n";
 		ret += "password:\t\t" + _password + "\n";
 		ret += "firstName:\t\t" + _firstName + "\n";
 		ret += "lastName:\t\t" + _lastName + "\n";
-		ret += "email:\t\t" + _email + "\n";
+		ret += "email:\t\t\t" + _email + "\n";
 		ret += "secretQuestion:\t\t" + _secretQuestion + "\n";
 		ret += "secretAnswer:\t\t" + _secretAnswer + "\n";
 		for(Order o : _recentOrders) {
@@ -58,5 +70,23 @@ public class Account {
 		}
 		
 		return ret;
+	}
+
+	@Override
+	public char charAt(int index) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int length() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public CharSequence subSequence(int start, int end) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

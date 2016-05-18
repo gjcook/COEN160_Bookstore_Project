@@ -57,6 +57,20 @@ public class Book {
 	public double getPrice() { return _price; }
 	
 	public String toString() {
+		String ret = "";
+		ret += _title;
+		ret += "_" + _author;
+		ret += "_" + _description;
+		ret += "_" + _pages;
+		ret += "_" + _publicationDate;
+		ret += "_" + _publisher;
+		ret += "_" + _pathToImage;
+		ret += "_" + _price;
+		
+		return ret;
+	}
+	
+	public String toReadableString() {
 		return  "title:\t\t\t" + _title + "\n" +
 				"author:\t\t\t" + _author + "\n" +
 				"description:\t\t" + _description +"\n" +
