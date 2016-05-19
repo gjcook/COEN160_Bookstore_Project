@@ -32,11 +32,17 @@ public class Sys {
 	
 	private String getAccFilePath() { return "accList.txt"; }
 	
+	public void viewLogInScreen() {
+		Sys.sharedInstance()._mainFrame.setScrollView(new LogInView());
+	}
+	
 	public boolean logIn(String accountName, String password) {
 		if(_isLoggedIn == false) {
 			Account tempUser = _userList.lookupUsername(accountName);
 			if(tempUser != null && tempUser.auth(password)) {
 				_activeUser = tempUser;
+				_mainFrame.setLoggedIn();
+				Sys.sharedInstance()._mainFrame.setScrollView(new ViewPanel(""));
 				return true;
 			}
 		}
@@ -52,6 +58,8 @@ public class Sys {
 		if(_isLoggedIn == true) {
 			_userList.saveData(getAccFilePath());	//Might need to pass more stuff to this
 			_isLoggedIn = false;
+			Sys.sharedInstance()._mainFrame.setScrollView(new ViewPanel(""));
+			return true;
 		}
 		return false;
 	}

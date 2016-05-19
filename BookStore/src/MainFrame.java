@@ -76,6 +76,11 @@ public class MainFrame extends JFrame {
 		arg.setAutoscrolls(true);
 	}
 	
+	public void setLoggedIn() {
+		_account.setVisible(true);
+		_logInOut.setText("Log Out");
+	}
+	
 	public void configureSearchListeners() {
 		//_searchField
 		//_searchButton
@@ -121,7 +126,13 @@ public class MainFrame extends JFrame {
 		//_logInOut
 		_logInOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(_logInOut.getText() == "Log In") {
+					Sys.sharedInstance().viewLogInScreen();
+				} else {
+					Sys.sharedInstance().logOut();
+					_account.setVisible(false);
+					_logInOut.setText("Log In");
+				}
 			}
 		});
 	}
