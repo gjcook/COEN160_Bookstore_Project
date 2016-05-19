@@ -82,6 +82,14 @@ public class Account implements CharSequence {
 		return ret;
 	}
 
+	public String getSecretQuestion() {
+		return _secretQuestion;
+	}
+	
+	public boolean checkSecretAnswer(String toCheck) {
+		if(toCheck != _secretAnswer) return false; else return true;
+	}
+	
 	@Override
 	public char charAt(int index) {
 		// TODO Auto-generated method stub

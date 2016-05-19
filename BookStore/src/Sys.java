@@ -64,6 +64,26 @@ public class Sys {
 		return false;
 	}
 
+	public String getSecretQuestion(String username) {
+		if(_isLoggedIn == false) {
+			Account tempUser = _userList.lookupUsername(username);
+			if(tempUser != null) {
+				return tempUser.getSecretQuestion();
+			}
+		}
+		return " ";
+	}
+	
+	public boolean checkSecretQuestion(String username, String answer) {
+		if(_isLoggedIn == false) {
+			Account tempUser = _userList.lookupUsername(username);
+			if(tempUser!= null && tempUser.checkSecretAnswer(answer)) {	
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void viewCart() {
 		_mainFrame.setScrollView(new CartView(_cart));
 	}
