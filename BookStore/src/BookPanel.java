@@ -21,10 +21,12 @@ public class BookPanel extends JPanel {
 	
 	private JLabel _title;
 	private JLabel _author;
-	private JTextField _descriptionCondensed;
+	private JTextField _description;
 	private JLabel _pages;
 	private ImageIcon _image;
 	private JLabel _price;
+	private JLabel _publisher;
+	private JLabel _publicationDate;
 	
 	private JButton _back;
 	private JButton _view;
@@ -39,25 +41,35 @@ public class BookPanel extends JPanel {
 		_title = new JLabel(_book.getTitle());
 		_author = new JLabel(_book.getAuthor());
 		
-		_descriptionCondensed = new JTextField(_book.getDescription().substring(0, (_book.getDescription().length() < 40) ? _book.getDescription().length(): 40));
+		_description = new JTextField(_book.getDescription());
+		_description.setEditable(false);
+		_description.setPreferredSize(new Dimension(300,300));
+		_description.setMinimumSize(new Dimension(300,300));
+		_description.setMaximumSize(new Dimension(300,300));
 		_pages = new JLabel(String.valueOf(_book.getPages()) + " pages");
 		_price = new JLabel("$" + String.valueOf(_book.getPrice()));
+		_publisher = new JLabel(_book.getPublisher());
+		_publicationDate = new JLabel(_book.getPublicationDate());
 		
 		_view = new JButton("View Book");
 		_add = new JButton("Add to Cart");
 		
 		_image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" +"image.jpg"/*_book.getImagePath()*/)
 				.getImage()
-				.getScaledInstance(60, 90, java.awt.Image.SCALE_SMOOTH));
+				.getScaledInstance(200, 300, java.awt.Image.SCALE_SMOOTH));
 		
-		JPanel _middlePanel = new JPanel(), _eastPanel = new JPanel(), _titlePanel = new JPanel();
+		JPanel _middlePanel = new JPanel(), _eastPanel = new JPanel(), _titlePanel = new JPanel(), _detailPanel = new JPanel();
 		_titlePanel.setLayout(new BoxLayout(_titlePanel, BoxLayout.Y_AXIS));
 		_titlePanel.add(_title);
 		_titlePanel.add(_author);
+		_detailPanel.setLayout(new BoxLayout(_detailPanel, BoxLayout.Y_AXIS));
+		_detailPanel.add(_publisher);
+		_detailPanel.add(_publicationDate);
+		_detailPanel.add(_pages);
 		_middlePanel.setLayout(new BorderLayout());
 		_middlePanel.add(_titlePanel, BorderLayout.NORTH);
-		_middlePanel.add(_descriptionCondensed, BorderLayout.CENTER);
-		_middlePanel.add(_pages, BorderLayout.EAST);
+		_middlePanel.add(_description, BorderLayout.CENTER);
+		_middlePanel.add(_detailPanel, BorderLayout.EAST);
 		
 		_eastPanel.setLayout(new BoxLayout(_eastPanel, BoxLayout.Y_AXIS));
 		_eastPanel.add(_price);
@@ -74,9 +86,9 @@ public class BookPanel extends JPanel {
 		_back = new JButton("back");
 		
 		add(_back, BorderLayout.NORTH);
-		this.setPreferredSize(new Dimension(700, 100));
-		this.setMaximumSize(new Dimension(700, 100));
-		this.setMinimumSize(new Dimension(700, 100));
+		this.setPreferredSize(new Dimension(700, 300));
+		this.setMaximumSize(new Dimension(700, 300));
+		this.setMinimumSize(new Dimension(700, 300));
 		
 		configureAddToCartListener();
 		configureBackButtonListener();

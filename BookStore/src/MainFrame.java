@@ -60,7 +60,7 @@ public class MainFrame extends JFrame {
 	    setContentPane(_windowPanel);
 
 	    // Display the window.
-	    setSize(750, 1000);
+	    setSize(750, 700);
 	    setVisible(true);
 	    
 	    configureSearchListeners();
@@ -72,7 +72,7 @@ public class MainFrame extends JFrame {
 	
 	public void setScrollView(JPanel arg) {
 		_contentPanel.setViewportView(arg);
-		arg.setPreferredSize(new Dimension(700, 1000));
+		arg.setPreferredSize(new Dimension(700, 400));
 		arg.setAutoscrolls(true);
 	}
 	

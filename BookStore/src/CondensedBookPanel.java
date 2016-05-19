@@ -39,6 +39,7 @@ public class CondensedBookPanel extends JPanel {
 		_author = new JLabel(_book.getAuthor());
 		
 		_descriptionCondensed = new JTextField(_book.getDescription().substring(0, (_book.getDescription().length() < 40) ? _book.getDescription().length(): 40));
+		_descriptionCondensed.setEditable(false);
 		_pages = new JLabel(String.valueOf(_book.getPages()) + " pages");
 		_price = new JLabel("$" + String.valueOf(_book.getPrice()));
 		
