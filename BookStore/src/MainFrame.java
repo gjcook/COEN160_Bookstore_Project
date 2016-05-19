@@ -1,10 +1,14 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JScrollPane;
 
@@ -27,7 +31,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(String title) {
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		_windowPanel = new JPanel();
 		
 		_viewCatalog = new JButton("View Catalog");
@@ -52,17 +56,73 @@ public class MainFrame extends JFrame {
 	    _windowPanel.setLayout(new BorderLayout());
 	    _windowPanel.add(_menuBar, BorderLayout.NORTH);
 	    _windowPanel.add(_contentPanel, BorderLayout.CENTER);
-	    
+
 	    setContentPane(_windowPanel);
 
 	    // Display the window.
-	    setSize(700, 1000);
+	    setSize(750, 1000);
 	    setVisible(true);
+	    
+	    configureSearchListeners();
+	    configureViewCatalogListener();
+	    configureCartListener();
+	    configureAccountListener();
+	    configureLogInOutListener();
 	}
 	
 	public void setScrollView(JPanel arg) {
 		_contentPanel.setViewportView(arg);
 		arg.setPreferredSize(new Dimension(700, 1000));
 		arg.setAutoscrolls(true);
+	}
+	
+	public void configureSearchListeners() {
+		//_searchField
+		//_searchButton
+		_searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sys.sharedInstance().search(_searchField.getText());
+				_searchField.setText("");
+			}
+		});
+	}
+	
+	public void configureViewCatalogListener() {
+		//_viewCatalog
+		_viewCatalog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sys.sharedInstance().search("");
+			}
+		});
+	}
+	
+	public void configureCartListener() {
+		//_cart
+		_cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sys.sharedInstance().viewCart();
+			}
+		});
+	}
+	
+	public void configureAccountListener() {
+		//_account
+		
+		_account.setVisible(false); // Hiding account screen at beginning when user is logged out
+		
+		_account.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
+	
+	public void configureLogInOutListener() {
+		//_logInOut
+		_logInOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 	}
 }

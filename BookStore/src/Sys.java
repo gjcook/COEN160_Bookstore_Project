@@ -56,18 +56,31 @@ public class Sys {
 		return false;
 	}
 
+	public void viewCart() {
+		_mainFrame.setScrollView(new CartView(_cart));
+	}
+	
+	public void viewBook(Book b, String query, boolean isQuery) {
+		_mainFrame.setScrollView(new BookPanel(b, query, isQuery));
+	}
+	
+	public void addToCart(Book b) {
+		_cart.addBook(b);
+	}
+	
+	public void removeBookFromCart(Book b) {
+		_cart.removeBook(b);
+	}
+	
 	public List<Book> getBooks() {
 		return _inventory.getAllBooks();
 	}
 	
+	public void search(String query) {
+		_mainFrame.setScrollView(new ViewPanel(query));
+	}
+	
 	public static void main(String args[]) {
-		
-		Sys.sharedInstance().logIn("gcook","dad");
-		Sys.sharedInstance().logOut();
-		
-		Sys.sharedInstance().logOut();
-		
 		Sys.sharedInstance()._mainFrame.setScrollView(new ViewPanel(""));
-		
 	}
 }

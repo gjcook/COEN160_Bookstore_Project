@@ -15,7 +15,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 
-public class CondensedBookPanel extends JPanel {
+public class BookPanel extends JPanel {
 	private Book _book;
 	private String _query;
 	
@@ -26,10 +26,11 @@ public class CondensedBookPanel extends JPanel {
 	private ImageIcon _image;
 	private JLabel _price;
 	
+	private JButton _back;
 	private JButton _view;
 	private JButton _add;
 	
-	public CondensedBookPanel(Book newBook, String query) {
+	public BookPanel(Book newBook, String query, boolean showBackButton) {
 		super();
 		_query = query;
 		_book = newBook;
@@ -66,30 +67,36 @@ public class CondensedBookPanel extends JPanel {
 
 		add(_middlePanel,BorderLayout.CENTER);
 		add(label, BorderLayout.WEST);
-		
+
 		//add(Box.createHorizontalGlue());
 		add(_eastPanel,BorderLayout.EAST);
-
+		
+		_back = new JButton("back");
+		
+		add(_back, BorderLayout.NORTH);
 		this.setPreferredSize(new Dimension(700, 100));
 		this.setMaximumSize(new Dimension(700, 100));
 		this.setMinimumSize(new Dimension(700, 100));
 		
-		configureViewListener();
 		configureAddToCartListener();
-	}
-	
-	private void configureViewListener() {
-		_view.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Sys.sharedInstance().viewBook(_book, _query, true);
-			}
-		});
+		configureBackButtonListener();
+		if(!showBackButton) {
+			_back.setVisible(false);
+		}
 	}
 	
 	private void configureAddToCartListener() {
 		_add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sys.sharedInstance().addToCart(_book);
+			}
+		});
+	}
+	
+	private void configureBackButtonListener() {
+		_back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sys.sharedInstance().search(_query);
 			}
 		});
 	}

@@ -1,13 +1,20 @@
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.List;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 public class ViewPanel extends JPanel {
+	JLabel _header;
 	public ViewPanel(String query) {
 		super();
+		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		displayResults(search(query));
+		_header = new JLabel("");
+		add(_header);
+		displayResults(search(query), query);
 	}
 	
 	/**
@@ -16,6 +23,7 @@ public class ViewPanel extends JPanel {
 	private List<Book> search(String query) {
 		List<Book> bookList = Sys.sharedInstance().getBooks();
 		if(query.equals("")) {
+			_header.setText("Book Catalog");
 			return bookList;
 		}
 		
@@ -28,12 +36,14 @@ public class ViewPanel extends JPanel {
 			else if(b.getPublisher().contains(query)) ret.add(b);
 		}
 		
+		_header.setText("Search for: " + query);
+		
 		return ret;
 	}
 	
-	private void displayResults(List<Book> results) {
+	private void displayResults(List<Book> results, String query) {
 		for(Book b : results) {
-			add(new CondensedBookPanel(b));
+			add(new CondensedBookPanel(b, query));
 		}
 	}
 }
