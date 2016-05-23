@@ -19,6 +19,7 @@ public class ForgotPasswordView extends JPanel {
 	JLabel _errorLabel;
 	JPanel _newPasswordPanel;
 	JPanel _secretQuestionPanel;
+	JButton _back;
 	
 	private String tempAccountName;
 	
@@ -88,6 +89,7 @@ public class ForgotPasswordView extends JPanel {
 
 		tempAccountName = username;
 		
+		_back = new JButton("Back");
 		_newPasswordPanel.add(newPasswordHeader);
 		_newPasswordPanel.add(newPasswordLabel);
 		_newPasswordPanel.add(_newPassword);
@@ -95,10 +97,12 @@ public class ForgotPasswordView extends JPanel {
 		_newPasswordPanel.add(_repeatPassword);
 		_newPasswordPanel.add(_changePassword);
 		
+		add(_back);
 		add(_errorLabel);
 		add(_newPasswordPanel);
 		
 		configureChangePasswordObserver();
+		configureBackButtonObserver();
 	}
 	
 	private void configureFindSecretQuestionObserver() {
@@ -124,6 +128,14 @@ public class ForgotPasswordView extends JPanel {
 				} else {
 					_errorLabel.setText("Incorrect answer to secret question!");
 				}
+			}
+		});
+	}
+	
+	private void configureBackButtonObserver() {
+		_back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sys.sharedInstance().viewAccountScreen();
 			}
 		});
 	}

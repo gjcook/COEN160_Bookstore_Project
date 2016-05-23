@@ -54,7 +54,7 @@ public class MyAccountView extends JPanel {
 	private void configureChangeAccountDetails() {
 		_changeAccountDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Sys.sharedInstance().viewAccountScreen();
+				Sys.sharedInstance().changeAccountDetails();
 			}
 		});
 	}

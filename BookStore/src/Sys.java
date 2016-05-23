@@ -57,6 +57,10 @@ public class Sys {
 		_mainFrame.setScrollView(new ForgotPasswordView(_activeUser.getID()));
 	}
 	
+	public void changeAccountDetails() {
+		_mainFrame.setScrollView(new ChangeAccountDetails());
+	}
+	
 	public void createAccount(String username,
 			String password,
 			String firstName,
