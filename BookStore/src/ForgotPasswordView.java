@@ -20,6 +20,8 @@ public class ForgotPasswordView extends JPanel {
 	JPanel _newPasswordPanel;
 	JPanel _secretQuestionPanel;
 	
+	private String tempAccountName;
+	
 	public ForgotPasswordView() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -70,6 +72,35 @@ public class ForgotPasswordView extends JPanel {
 		configureChangePasswordObserver();
 	}
 	
+	public ForgotPasswordView(String username) {
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		_newPasswordPanel = new JPanel();
+		
+		_errorLabel = new JLabel("");
+		_newPassword = new JTextField(20);
+		_repeatPassword = new JTextField(20);
+		_changePassword = new JButton("Change Password");
+		
+		JLabel newPasswordHeader = new JLabel("Enter a new Password"),
+				newPasswordLabel = new JLabel("New Password"),
+				repeatPasswordLabel = new JLabel("Repeat Password");
+
+		tempAccountName = username;
+		
+		_newPasswordPanel.add(newPasswordHeader);
+		_newPasswordPanel.add(newPasswordLabel);
+		_newPasswordPanel.add(_newPassword);
+		_newPasswordPanel.add(repeatPasswordLabel);
+		_newPasswordPanel.add(_repeatPassword);
+		_newPasswordPanel.add(_changePassword);
+		
+		add(_errorLabel);
+		add(_newPasswordPanel);
+		
+		configureChangePasswordObserver();
+	}
+	
 	private void configureFindSecretQuestionObserver() {
 		_username.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,15 +131,26 @@ public class ForgotPasswordView extends JPanel {
 	private void configureChangePasswordObserver() {
 		_changePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(_newPassword.getText().equals(_repeatPassword.getText())) {
-					Sys.sharedInstance().changePassword(_username.getText(),_repeatPassword.getText());
-					_errorLabel.setText("Password change accepted! Please log in to your account.");
-					_newPassword.setText("");
-					_repeatPassword.setText("");
+				if(Sys.sharedInstance().isLoggedIn()) {
+					if(_newPassword.getText().equals(_repeatPassword.getText())) {
+						Sys.sharedInstance().changePassword(tempAccountName,_repeatPassword.getText());
+						Sys.sharedInstance().viewAccountScreen();
+					} else {
+						_errorLabel.setText("Error: these passwords do not match! Please try again.");
+						_newPassword.setText("");
+						_repeatPassword.setText("");
+					}
 				} else {
-					_errorLabel.setText("Error: these passwords do not match! Please try again.");
-					_newPassword.setText("");
-					_repeatPassword.setText("");
+					if(_newPassword.getText().equals(_repeatPassword.getText())) {
+						Sys.sharedInstance().changePassword(_username.getText(),_repeatPassword.getText());
+						_errorLabel.setText("Password change accepted! Please log in to your account.");
+						_newPassword.setText("");
+						_repeatPassword.setText("");
+					} else {
+						_errorLabel.setText("Error: these passwords do not match! Please try again.");
+						_newPassword.setText("");
+						_repeatPassword.setText("");
+					}
 				}
 			}
 		});

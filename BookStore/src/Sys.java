@@ -11,6 +11,7 @@ public class Sys {
 	private Cart _cart;
 	private boolean _isLoggedIn;
 	private MainFrame _mainFrame;
+	
 	//private Jpanel for screen. This will be the outermost JPanel
 	
 	
@@ -32,12 +33,28 @@ public class Sys {
 	
 	private String getAccFilePath() { return "accList.txt"; }
 	
+	public boolean isLoggedIn() {
+		return _isLoggedIn;
+	}
+	
 	public void viewCreateAccountScreen() {
 		Sys.sharedInstance()._mainFrame.setScrollView(new CreateAccountView());
 	}
 	
 	public void viewLogInScreen() {
 		Sys.sharedInstance()._mainFrame.setScrollView(new LogInView());
+	}
+	
+	public void viewAccountScreen() {
+		Sys.sharedInstance()._mainFrame.setScrollView(new MyAccountView());
+	}
+	
+	public void viewRecentOrders() {
+		Sys.sharedInstance()._mainFrame.setScrollView(new MyRecentOrdersView());
+	}
+	
+	public void changePassword() {
+		_mainFrame.setScrollView(new ForgotPasswordView(_activeUser.getID()));
 	}
 	
 	public void createAccount(String username,
@@ -59,6 +76,7 @@ public class Sys {
 			if(tempUser != null && tempUser.auth(password)) {
 				_activeUser = tempUser;
 				_mainFrame.setLoggedIn();
+				_isLoggedIn = true;
 				Sys.sharedInstance()._mainFrame.setScrollView(new ViewPanel(""));
 				return true;
 			}
@@ -133,12 +151,20 @@ public class Sys {
 		return _inventory.getAllBooks();
 	}
 	
+	public List<Order> getOrders() {
+		return _activeUser.getRecentOrders();
+	}
+	
 	public void search(String query) {
 		_mainFrame.setScrollView(new ViewPanel(query));
 	}
 	
 	public void forgotPassword() {
 		 _mainFrame.setScrollView(new ForgotPasswordView());
+	}
+	
+	public Account getUser() {
+		return _activeUser;
 	}
 	
 	public static void main(String args[]) {

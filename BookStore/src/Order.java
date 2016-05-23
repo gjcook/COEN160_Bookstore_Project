@@ -12,6 +12,10 @@ public class Order {
 	private String _addressLine1;	//<Address>
 	private String _addressLine2;	//<Address continued>
 	private String _addressLine3;	//<City>, <State> <Zip>
+	private String _CCNumber;
+	private String _CCCode;
+	private String _CCMonth;
+	private String _CCYear;
 	
 	public Order(
 			List<Book> orderContents, 
@@ -20,7 +24,11 @@ public class Order {
 			double total,
 			String addressLine1,
 			String addressLine2,
-			String addressLine3) {
+			String addressLine3,
+			String CCNumber,
+			String CCCode,
+			String CCMonth,
+			String CCYear) {
 		_orderContents = orderContents;
 		_subTotal = subTotal;
 		_tax = tax;
@@ -28,6 +36,10 @@ public class Order {
 		_addressLine1 = addressLine1;
 		_addressLine2 = addressLine2;
 		_addressLine3 = addressLine3;
+		_CCNumber = CCNumber;
+		_CCCode = CCCode;
+		_CCMonth = CCMonth;
+		_CCYear = CCYear;
 	}
 	
 	public Order(String stringFromFile) {
@@ -36,8 +48,13 @@ public class Order {
 		_addressLine1 = tempArray[0];
 		_addressLine2 = tempArray[1];
 		_addressLine3 = tempArray[2];
+		_CCNumber = tempArray[3];
+		_CCCode = tempArray[4];
+		_CCMonth = tempArray[5];
+		_CCYear = tempArray[6];
 		_orderContents = new ArrayList<Book>();
-		for(int i = 3; i < tempArray.length; i++) {
+		
+		for(int i = 7; i < tempArray.length; i++) {
 			_orderContents.add(new Book(tempArray[i]));
 		}
 		
@@ -70,6 +87,10 @@ public class Order {
 		ret += _addressLine1;
 		ret += "/" + _addressLine2;
 		ret += "/" + _addressLine3;
+		ret += "/" + _CCNumber;
+		ret += "/" + _CCCode;
+		ret += "/" + _CCMonth;
+		ret += "/" + _CCYear;
 		for(Book b: _orderContents) { ret += "/" + b; }
 		
 		return ret;

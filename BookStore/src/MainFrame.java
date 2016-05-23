@@ -117,7 +117,7 @@ public class MainFrame extends JFrame {
 		
 		_account.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Sys.sharedInstance().viewAccountScreen();
 			}
 		});
 	}

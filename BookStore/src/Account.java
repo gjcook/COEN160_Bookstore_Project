@@ -110,6 +110,14 @@ public class Account implements CharSequence {
 		_password = newPassword;
 	}
 	
+	public List<Order> getRecentOrders() {
+		return _recentOrders;
+	}
+	
+	public String getName() {
+		return _firstName + " " + _lastName;
+	}
+	
 	@Override
 	public char charAt(int index) {
 		// TODO Auto-generated method stub
