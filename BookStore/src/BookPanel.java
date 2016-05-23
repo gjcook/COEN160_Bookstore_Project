@@ -29,7 +29,6 @@ public class BookPanel extends JPanel {
 	private JLabel _publicationDate;
 	
 	private JButton _back;
-	private JButton _view;
 	private JButton _add;
 	
 	public BookPanel(Book newBook, String query, boolean showBackButton) {
@@ -51,7 +50,6 @@ public class BookPanel extends JPanel {
 		_publisher = new JLabel(_book.getPublisher());
 		_publicationDate = new JLabel(_book.getPublicationDate());
 		
-		_view = new JButton("View Book");
 		_add = new JButton("Add to Cart");
 		
 		_image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" +"image.jpg"/*_book.getImagePath()*/)
@@ -73,7 +71,6 @@ public class BookPanel extends JPanel {
 		
 		_eastPanel.setLayout(new BoxLayout(_eastPanel, BoxLayout.Y_AXIS));
 		_eastPanel.add(_price);
-		_eastPanel.add(_view);
 		_eastPanel.add(_add);
 		JLabel label = new JLabel(_image);
 

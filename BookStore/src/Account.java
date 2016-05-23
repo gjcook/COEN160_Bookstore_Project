@@ -17,6 +17,22 @@ public class Account implements CharSequence {
 		Sys.sharedInstance().addNewAccount(this);
 	}
 	
+	public void initNewAccount(String username,
+			String password,
+			String firstName,
+			String lastName,
+			String email,
+			String secretQuestion,
+			String secretAnswer) {
+		_username = username;
+		_password = password;
+		_firstName = firstName;
+		_lastName = lastName;
+		_email = email;
+		_secretQuestion = secretQuestion;
+		_secretAnswer = secretAnswer;
+	}
+	
 	public Account(
 			String username,
 			String password,
@@ -87,7 +103,11 @@ public class Account implements CharSequence {
 	}
 	
 	public boolean checkSecretAnswer(String toCheck) {
-		if(toCheck != _secretAnswer) return false; else return true;
+		return toCheck.equals(_secretAnswer);
+	}
+	
+	public void changePassword(String newPassword) {
+		_password = newPassword;
 	}
 	
 	@Override

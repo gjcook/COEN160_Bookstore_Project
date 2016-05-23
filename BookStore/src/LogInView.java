@@ -60,6 +60,8 @@ public class LogInView extends JPanel {
 					_username.setText("");
 					_password.setText("");
 					_errorLabel.setText("Invalid username/password combination. Try again!");
+				} else {
+					_errorLabel.setText("");
 				}
 			}
 		});
@@ -68,7 +70,7 @@ public class LogInView extends JPanel {
 	private void configureForgotPasswordObserver() {
 		_forgotPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Sys.sharedInstance().forgotPassword();
 			}
 		});
 	}
@@ -76,7 +78,7 @@ public class LogInView extends JPanel {
 	private void configureCreateAccountObserver() {
 		_createAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Sys.sharedInstance().viewCreateAccountScreen();
 			}
 		});
 	}

@@ -32,8 +32,25 @@ public class Sys {
 	
 	private String getAccFilePath() { return "accList.txt"; }
 	
+	public void viewCreateAccountScreen() {
+		Sys.sharedInstance()._mainFrame.setScrollView(new CreateAccountView());
+	}
+	
 	public void viewLogInScreen() {
 		Sys.sharedInstance()._mainFrame.setScrollView(new LogInView());
+	}
+	
+	public void createAccount(String username,
+			String password,
+			String firstName,
+			String lastName,
+			String email,
+			String secretQuestion,
+			String secretAnswer) {
+		Account tempUser = new Account();
+		tempUser.initNewAccount(username, password, firstName, lastName, email, secretQuestion, secretAnswer);
+		_userList.saveData(getAccFilePath());
+		logIn(username, password);
 	}
 	
 	public boolean logIn(String accountName, String password) {
@@ -84,6 +101,18 @@ public class Sys {
 		return false;
 	}
 	
+	public void changePassword(String username, String newPassword) {
+		if(_isLoggedIn == false) {
+			Account tempUser = _userList.lookupUsername(username);
+			tempUser.changePassword(newPassword);
+			_userList.saveData(getAccFilePath());
+		}
+	}
+	
+	public boolean checkIfUsernameExists(String username) {
+		if(_isLoggedIn == false) return _userList.lookupUsername(username) != null; else return false;
+	}
+	
 	public void viewCart() {
 		_mainFrame.setScrollView(new CartView(_cart));
 	}
@@ -106,6 +135,10 @@ public class Sys {
 	
 	public void search(String query) {
 		_mainFrame.setScrollView(new ViewPanel(query));
+	}
+	
+	public void forgotPassword() {
+		 _mainFrame.setScrollView(new ForgotPasswordView());
 	}
 	
 	public static void main(String args[]) {

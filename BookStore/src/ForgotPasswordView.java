@@ -34,7 +34,7 @@ public class ForgotPasswordView extends JPanel {
 		_validateAnswer = new JButton("Submit");
 		_newPassword = new JTextField(20);
 		_repeatPassword = new JTextField(20);
-		_changePassword = new JButton("Forgot Password?");
+		_changePassword = new JButton("Change Password");
 		
 		JLabel usernameLabel = new JLabel("Username"),
 				secretQuestionLabel = new JLabel("Secret Question"),
@@ -73,7 +73,12 @@ public class ForgotPasswordView extends JPanel {
 	private void configureFindSecretQuestionObserver() {
 		_username.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				_secretAnswer.setText(Sys.sharedInstance().getSecretQuestion(_username.getText()));
+				_secretQuestion.setText(Sys.sharedInstance().getSecretQuestion(_username.getText()));
+				if(_secretQuestion.getText().equals(" ")) {
+					_errorLabel.setText("Username not found");
+				} else {
+					_errorLabel.setText("");
+				}
 			}
 		});
 	}
@@ -86,7 +91,7 @@ public class ForgotPasswordView extends JPanel {
 					_secretQuestionPanel.setVisible(false);
 					_newPasswordPanel.setVisible(true);
 				} else {
-					
+					_errorLabel.setText("Incorrect answer to secret question!");
 				}
 			}
 		});
@@ -96,9 +101,14 @@ public class ForgotPasswordView extends JPanel {
 		_changePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(_newPassword.getText().equals(_repeatPassword.getText())) {
-					
+					Sys.sharedInstance().changePassword(_username.getText(),_repeatPassword.getText());
+					_errorLabel.setText("Password change accepted! Please log in to your account.");
+					_newPassword.setText("");
+					_repeatPassword.setText("");
 				} else {
-					
+					_errorLabel.setText("Error: these passwords do not match! Please try again.");
+					_newPassword.setText("");
+					_repeatPassword.setText("");
 				}
 			}
 		});
