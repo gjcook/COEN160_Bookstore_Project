@@ -23,7 +23,8 @@ public class OrderPanel extends JPanel {
 		add(west, BorderLayout.WEST);
 		add(center, BorderLayout.CENTER);
 		
-		for(Book b : _order.getCartContents()) {
+		System.out.println("Order contents size: "+ _order.getOrderContents().size());
+		for(Book b : _order.getOrderContents()) {
 			center.add(new JLabel(b.getTitle() + " - " + b.getAuthor() + " - " + b.getPrice()));
 		}
 		

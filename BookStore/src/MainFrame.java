@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 	    _menuBar.add(_searchButton);
 	    
 	    _contentPanel = new JScrollPane();
-	    _contentPanel.setPreferredSize(new Dimension(800, 800));
+	    //_contentPanel.setPreferredSize(new Dimension(400, 700));
 	    
 	    _windowPanel.setLayout(new BorderLayout());
 	    _windowPanel.add(_menuBar, BorderLayout.NORTH);
@@ -72,7 +72,7 @@ public class MainFrame extends JFrame {
 	
 	public void setScrollView(JPanel arg) {
 		_contentPanel.setViewportView(arg);
-		arg.setPreferredSize(new Dimension(700, 400));
+		arg.setPreferredSize(new Dimension(400, 400));
 		arg.setAutoscrolls(true);
 	}
 	
@@ -112,9 +112,7 @@ public class MainFrame extends JFrame {
 	
 	public void configureAccountListener() {
 		//_account
-		
 		_account.setVisible(false); // Hiding account screen at beginning when user is logged out
-		
 		_account.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sys.sharedInstance().viewAccountScreen();

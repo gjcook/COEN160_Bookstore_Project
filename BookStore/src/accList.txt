@@ -1,3 +1,3 @@
 username	password	firstname	lastname	emailaddress	secretquestion	secretanswer	addressline1/addressline2/addressline3/1111222233334444/123/23/34/title_author_description_11_publicationDate_publisher_pathtoimage_9.99	2addressline1//2addressline3/1234123412341234/341/12/12/title_author_description_11_publicationDate_publisher_pathtoimage_9.99/title_author_description_11_publicationDate_publisher_pathtoimage_9.99	3addressline1/3addressline2/3addressline3/1234234534564567/123/12/13/3title_author_description_11_publicationDate_publisher_pathtoimage_9.99
-gcook	dad	Griffin	Cook	gcook@scu.edu	What was your first pet's name?	Chewy
+gcook	dad	Griffin	Cook	gcook@scu.edu	What was the name of your first pet?	Chewy
 griffin	qwerty	griffin	cook	gcook@scu.edu	What is your mother's maiden name?	Haley

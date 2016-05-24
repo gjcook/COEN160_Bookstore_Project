@@ -29,7 +29,7 @@ public class Order {
 			String CCCode,
 			String CCMonth,
 			String CCYear) {
-		_orderContents = orderContents;
+		_orderContents = new ArrayList(orderContents);
 		_subTotal = subTotal;
 		_tax = tax;
 		_total = total;
@@ -68,7 +68,7 @@ public class Order {
 		_total = _subTotal + _tax;
 	}
 	
-	public List<Book> getCartContents() { return _orderContents; }
+	public List<Book> getOrderContents() { return _orderContents; }
 	
 	public double getSubTotal() { return _subTotal; }
 	

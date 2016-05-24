@@ -43,6 +43,11 @@ public class Cart {
 		this.runCalcs();
 	}
 	
+	public void empty() {
+		_cartContents.clear();
+		this.runCalcs();
+	}
+	
 	public List<Book> getCartContents() { return _cartContents; }
 	
 	public double getSubTotal() { return _subTotal; }

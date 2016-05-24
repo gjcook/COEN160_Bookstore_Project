@@ -61,6 +61,14 @@ public class Sys {
 		_mainFrame.setScrollView(new ChangeAccountDetails());
 	}
 	
+	public void changeAccountDetails(String firstName,
+			String lastName,
+			String email,
+			String secretQuestion,
+			String secretAnswer) {
+		_activeUser.initNewAccount(firstName, lastName, email, secretQuestion, secretAnswer);
+	}
+	
 	public void createAccount(String username,
 			String password,
 			String firstName,
@@ -169,6 +177,16 @@ public class Sys {
 	
 	public Account getUser() {
 		return _activeUser;
+	}
+	
+	public void placeOrder(Order o) {
+		_activeUser.placeOrder(o);
+		_cart.empty();
+		_userList.saveData(getAccFilePath());
+	}
+	
+	public void checkout(Cart c) {
+		_mainFrame.setScrollView(new CheckoutView(c));
 	}
 	
 	public static void main(String args[]) {

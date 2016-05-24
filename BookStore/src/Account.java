@@ -33,6 +33,19 @@ public class Account implements CharSequence {
 		_secretAnswer = secretAnswer;
 	}
 	
+	public void initNewAccount(
+			String firstName,
+			String lastName,
+			String email,
+			String secretQuestion,
+			String secretAnswer) {
+		_firstName = firstName;
+		_lastName = lastName;
+		_email = email;
+		_secretQuestion = secretQuestion;
+		_secretAnswer = secretAnswer;
+	}
+	
 	public Account(
 			String username,
 			String password,
@@ -58,6 +71,10 @@ public class Account implements CharSequence {
 	
 	public String getID() {
 		return _username;
+	}
+	
+	public void placeOrder(Order o) {
+		_recentOrders.add(o);
 	}
 	
 	public String toString() {
@@ -116,6 +133,23 @@ public class Account implements CharSequence {
 	
 	public String getName() {
 		return _firstName + " " + _lastName;
+	}
+	
+	public String getFirstName() {
+		return _firstName;
+	}
+	
+	public String getLastName() {
+		return _lastName;
+	}
+	
+	
+	public String getEmail() {
+		return _email;
+	}
+	
+	public String getSecretAnswer() {
+		return _secretAnswer;
 	}
 	
 	@Override

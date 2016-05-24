@@ -119,7 +119,13 @@ public class CartView extends JPanel {
 	private void configureCheckoutListener() {
 		_checkout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(Sys.sharedInstance().isLoggedIn() && _cart.getCartContents().size() > 0) {
+					Sys.sharedInstance().checkout(_cart);
+				} else if(!Sys.sharedInstance().isLoggedIn()) {
+					_header.setText("Please Log In Before Checking Out!");
+				} else {
+					_header.setText("Add a book to the cart before checking out!");
+				}
 			}
 		});
 	}
