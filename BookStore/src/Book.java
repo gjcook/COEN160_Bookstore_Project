@@ -29,6 +29,7 @@ public class Book {
 	}
 	
 	public Book(String stringFromFile) {
+		System.out.println(stringFromFile);
 		String tempArray[] = stringFromFile.split("_");
 		_title = tempArray[0];
 		_author = tempArray[1];

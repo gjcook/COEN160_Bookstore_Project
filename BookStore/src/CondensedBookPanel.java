@@ -1,4 +1,5 @@
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -21,7 +22,7 @@ public class CondensedBookPanel extends JPanel {
 	
 	private JLabel _title;
 	private JLabel _author;
-	private JTextField _descriptionCondensed;
+	private JTextArea _descriptionCondensed;
 	private JLabel _pages;
 	private ImageIcon _image;
 	private JLabel _price;
@@ -38,15 +39,16 @@ public class CondensedBookPanel extends JPanel {
 		_title = new JLabel(_book.getTitle());
 		_author = new JLabel(_book.getAuthor());
 		
-		_descriptionCondensed = new JTextField(_book.getDescription().substring(0, (_book.getDescription().length() < 40) ? _book.getDescription().length(): 40));
+		_descriptionCondensed = new JTextArea(_book.getDescription());//.substring(0, (_book.getDescription().length() < 40) ? _book.getDescription().length(): 40));
 		_descriptionCondensed.setEditable(false);
+		_descriptionCondensed.setLineWrap(true);
 		_pages = new JLabel(String.valueOf(_book.getPages()) + " pages");
-		_price = new JLabel("$" + String.valueOf(_book.getPrice()));
+		_price = new JLabel("$" + String.valueOf(Sys.sharedInstance().getFormat().format(_book.getPrice())));
 		
 		_view = new JButton("View Book");
 		_add = new JButton("Add to Cart");
 		
-		_image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" +"image.jpg"/*_book.getImagePath()*/)
+		_image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" +_book.getImagePath())
 				.getImage()
 				.getScaledInstance(60, 90, java.awt.Image.SCALE_SMOOTH));
 		

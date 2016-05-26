@@ -25,12 +25,12 @@ public class OrderPanel extends JPanel {
 		
 		System.out.println("Order contents size: "+ _order.getOrderContents().size());
 		for(Book b : _order.getOrderContents()) {
-			center.add(new JLabel(b.getTitle() + " - " + b.getAuthor() + " - " + b.getPrice()));
+			center.add(new JLabel(b.getTitle() + " - " + b.getAuthor() + " - " + Sys.sharedInstance().getFormat().format(b.getPrice())));
 		}
 		
-		east.add(new JLabel("Subtotal:  "+_order.getSubTotal()));
-		east.add(new JLabel("Tax:          "+_order.getTax()));
-		east.add(new JLabel("Total:       "+_order.getTotal()));
+		east.add(new JLabel("Subtotal:  "+Sys.sharedInstance().getFormat().format(_order.getSubTotal())));
+		east.add(new JLabel("Tax:          "+Sys.sharedInstance().getFormat().format(_order.getTax())));
+		east.add(new JLabel("Total:       "+Sys.sharedInstance().getFormat().format(_order.getTotal())));
 		
 		west.add(new JLabel("Shipped to:"));
 		west.add(new JLabel(_order.getAddressLine1()));

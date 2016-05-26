@@ -1,5 +1,7 @@
 import java.util.List;
 import java.lang.System;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -11,8 +13,7 @@ public class Sys {
 	private Cart _cart;
 	private boolean _isLoggedIn;
 	private MainFrame _mainFrame;
-	
-	//private Jpanel for screen. This will be the outermost JPanel
+	private NumberFormat _priceFormat;
 	
 	
 	//Setting System to a singleton value, accessed by running System.sharedInstance();
@@ -21,6 +22,7 @@ public class Sys {
 	public static Sys sharedInstance() { return _singleton; }
 	
 	private Sys() {
+		_priceFormat = new DecimalFormat("#0.00");  
 		_activeUser = null;
 		_cart = new Cart();
 		_isLoggedIn = false;
@@ -35,6 +37,10 @@ public class Sys {
 	
 	public boolean isLoggedIn() {
 		return _isLoggedIn;
+	}
+	
+	public NumberFormat getFormat() {
+		return _priceFormat;
 	}
 	
 	public void viewCreateAccountScreen() {

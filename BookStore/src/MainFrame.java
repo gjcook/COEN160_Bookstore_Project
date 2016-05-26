@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 	    _menuBar.add(_searchButton);
 	    
 	    _contentPanel = new JScrollPane();
-	    //_contentPanel.setPreferredSize(new Dimension(400, 700));
+	    _contentPanel.setPreferredSize(new Dimension(400, 700));
 	    
 	    _windowPanel.setLayout(new BorderLayout());
 	    _windowPanel.add(_menuBar, BorderLayout.NORTH);
@@ -72,7 +72,7 @@ public class MainFrame extends JFrame {
 	
 	public void setScrollView(JPanel arg) {
 		_contentPanel.setViewportView(arg);
-		arg.setPreferredSize(new Dimension(400, 400));
+		//arg.setPreferredSize(new Dimension(400, 1500));
 		arg.setAutoscrolls(true);
 	}
 	

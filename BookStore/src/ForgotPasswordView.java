@@ -1,5 +1,6 @@
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,17 +50,29 @@ public class ForgotPasswordView extends JPanel {
 		_usernamePanel.add(usernameLabel);
 		_usernamePanel.add(_username);
 		
-		_secretQuestionPanel.add(secretQuestionLabel);
-		_secretQuestionPanel.add(_secretQuestion);
-		_secretQuestionPanel.add(secretAnswerLabel);
-		_secretQuestionPanel.add(_secretAnswer);
+		_secretQuestionPanel.setLayout(new BoxLayout(_secretQuestionPanel, BoxLayout.Y_AXIS));
+		_newPasswordPanel.setLayout(new BoxLayout(_newPasswordPanel, BoxLayout.Y_AXIS));
+		JPanel temp;
+		
+		temp = new JPanel();
+		temp.add(secretQuestionLabel);
+		temp.add(_secretQuestion);
+		_secretQuestionPanel.add(temp);
+		temp = new JPanel();
+		temp.add(secretAnswerLabel);
+		temp.add(_secretAnswer);
+		_secretQuestionPanel.add(temp);
 		_secretQuestionPanel.add(_validateAnswer);
 		
+		temp = new JPanel();
 		_newPasswordPanel.add(newPasswordHeader);
-		_newPasswordPanel.add(newPasswordLabel);
-		_newPasswordPanel.add(_newPassword);
-		_newPasswordPanel.add(repeatPasswordLabel);
-		_newPasswordPanel.add(_repeatPassword);
+		temp.add(newPasswordLabel);
+		temp.add(_newPassword);
+		_newPasswordPanel.add(temp);
+		temp = new JPanel();
+		temp.add(repeatPasswordLabel);
+		temp.add(_repeatPassword);
+		_newPasswordPanel.add(temp);
 		_newPasswordPanel.add(_changePassword);
 		
 		add(_errorLabel);
@@ -67,6 +80,8 @@ public class ForgotPasswordView extends JPanel {
 		add(_secretQuestionPanel);
 		add(_newPasswordPanel);
 		_newPasswordPanel.setVisible(false);
+		
+		setPreferredSize(new Dimension(400,600));
 		
 		configureFindSecretQuestionObserver();
 		configureValidateQuestionObserver();
@@ -100,6 +115,8 @@ public class ForgotPasswordView extends JPanel {
 		add(_back);
 		add(_errorLabel);
 		add(_newPasswordPanel);
+		
+		setPreferredSize(new Dimension(400,600));
 		
 		configureChangePasswordObserver();
 		configureBackButtonObserver();

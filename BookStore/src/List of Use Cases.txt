@@ -4,7 +4,7 @@ List of Use Cases (description located in the .docx file)
 -create account						Done
 -forgot password					Done
 -view recent orders					Done
--change account settings			
+-change account settings			Done
 -change password					Done
 -search for books					Done
 -display catalog					Done
@@ -12,4 +12,4 @@ List of Use Cases (description located in the .docx file)
 -add book to cart					Done
 -view cart							Done
 -remove from cart					Done
--checkout							
+-checkout							Done

@@ -1,4 +1,5 @@
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -21,7 +22,7 @@ public class BookPanel extends JPanel {
 	
 	private JLabel _title;
 	private JLabel _author;
-	private JTextField _description;
+	private JTextArea _description;
 	private JLabel _pages;
 	private ImageIcon _image;
 	private JLabel _price;
@@ -40,19 +41,20 @@ public class BookPanel extends JPanel {
 		_title = new JLabel(_book.getTitle());
 		_author = new JLabel(_book.getAuthor());
 		
-		_description = new JTextField(_book.getDescription());
+		_description = new JTextArea(_book.getDescription());
 		_description.setEditable(false);
+		_description.setLineWrap(true);
 		_description.setPreferredSize(new Dimension(300,300));
 		_description.setMinimumSize(new Dimension(300,300));
 		_description.setMaximumSize(new Dimension(300,300));
 		_pages = new JLabel(String.valueOf(_book.getPages()) + " pages");
-		_price = new JLabel("$" + String.valueOf(_book.getPrice()));
+		_price = new JLabel("$" + String.valueOf(Sys.sharedInstance().getFormat().format(_book.getPrice())));
 		_publisher = new JLabel(_book.getPublisher());
 		_publicationDate = new JLabel(_book.getPublicationDate());
 		
 		_add = new JButton("Add to Cart");
 		
-		_image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" +"image.jpg"/*_book.getImagePath()*/)
+		_image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" + _book.getImagePath())
 				.getImage()
 				.getScaledInstance(200, 300, java.awt.Image.SCALE_SMOOTH));
 		

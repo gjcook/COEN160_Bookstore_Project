@@ -38,9 +38,9 @@ public class CartView extends JPanel {
 		_footer.setLayout(new BoxLayout(_footer, BoxLayout.X_AXIS));
 		footerLeft.setLayout(new BoxLayout(footerLeft, BoxLayout.Y_AXIS));
 		footerRight.setLayout(new BoxLayout(footerRight, BoxLayout.Y_AXIS));
-		footerLeft.add(new JLabel("Subtotal:  "+_cart.getSubTotal()));
-		footerLeft.add(new JLabel("Tax:          "+_cart.getTax()));
-		footerLeft.add(new JLabel("Total:       "+_cart.getTotal()));
+		footerLeft.add(new JLabel("Subtotal:  "+Sys.sharedInstance().getFormat().format(_cart.getSubTotal())));
+		footerLeft.add(new JLabel("Tax:          "+Sys.sharedInstance().getFormat().format(_cart.getTax())));
+		footerLeft.add(new JLabel("Total:       "+Sys.sharedInstance().getFormat().format(_cart.getTotal())));
 		_checkout = new JButton("Checkout");
 		footerRight.add(_checkout);
 		_footer.add(footerLeft);
@@ -59,6 +59,7 @@ public class CartView extends JPanel {
 		for(Book b : books) {
 			_view.add(createSubPanel(b));
 		}
+		setPreferredSize(new Dimension(400,125*books.size()));
 	}
 	
 	private JPanel createSubPanel(Book book) {
@@ -67,7 +68,7 @@ public class CartView extends JPanel {
 		JLabel title = new JLabel(book.getTitle());
 		JLabel author = new JLabel(book.getAuthor());
 		
-		JLabel price = new JLabel("$" + String.valueOf(book.getPrice()));
+		JLabel price = new JLabel("$" + String.valueOf(Sys.sharedInstance().getFormat().format(book.getPrice())));
 		
 		JButton view = new JButton("View Book");
 		JButton remove = new JButton("Remove from Cart");
@@ -85,7 +86,7 @@ public class CartView extends JPanel {
 			}
 		});
 		
-		ImageIcon _image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" +"image.jpg"/*_book.getImagePath()*/)
+		ImageIcon _image = new ImageIcon(new ImageIcon(System.getProperty("user.dir") + "//src//" + book.getImagePath())
 				.getImage()
 				.getScaledInstance(60, 90, java.awt.Image.SCALE_SMOOTH));
 		

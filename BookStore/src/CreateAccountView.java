@@ -51,28 +51,42 @@ public class CreateAccountView extends JPanel {
 				repeatPasswordLabel = new JLabel("Repeat Password"),
 				secretQuestionLabel = new JLabel("Choose a Secret Question"),
 				secretAnswerLabel = new JLabel("Write Your Answer");
-		
+		JPanel temp;
 		_usernamePanel.setLayout(new BoxLayout(_usernamePanel, BoxLayout.Y_AXIS));
-		_usernamePanel.add(usernameLabel);
-		_usernamePanel.add(_username);
-		_usernamePanel.add(emailLabel);
-		_usernamePanel.add(_email);
-		_usernamePanel.add(firstNameLabel);
-		JPanel temp = new JPanel();
+		temp = new JPanel();
+		temp.add(usernameLabel);
+		temp.add(_username);
+		_usernamePanel.add(temp);
+		temp = new JPanel();
+		temp.add(emailLabel);
+		temp.add(_email);
+		_usernamePanel.add(temp);
+		temp = new JPanel();
+		temp.add(firstNameLabel);
 		temp.add(_firstName);
 		_usernamePanel.add(temp);
-		_usernamePanel.add(lastNameLabel);
-		_usernamePanel.add(_lastName);
+		temp = new JPanel();
+		temp.add(lastNameLabel);
+		temp.add(_lastName);
+		_usernamePanel.add(temp);
 		
 		_passwordPanel.setLayout(new BoxLayout(_passwordPanel, BoxLayout.Y_AXIS));
-		_passwordPanel.add(passwordLabel);
-		_passwordPanel.add(_password);
-		_passwordPanel.add(repeatPasswordLabel);
-		_passwordPanel.add(_repeatPassword);
-		_passwordPanel.add(secretQuestionLabel);
-		_passwordPanel.add(_secretQuestionSelector);
-		_passwordPanel.add(secretAnswerLabel);
-		_passwordPanel.add(_secretAnswer);
+		temp = new JPanel();
+		temp.add(passwordLabel);
+		temp.add(_password);
+		_passwordPanel.add(temp);
+		temp = new JPanel();
+		temp.add(repeatPasswordLabel);
+		temp.add(_repeatPassword);
+		_passwordPanel.add(temp);
+		temp = new JPanel();
+		temp.add(secretQuestionLabel);
+		temp.add(_secretQuestionSelector);
+		_passwordPanel.add(temp);
+		temp = new JPanel();
+		temp.add(secretAnswerLabel);
+		temp.add(_secretAnswer);
+		_passwordPanel.add(temp);
 		
 		_buttonPanel.add(_createAccount);
 		

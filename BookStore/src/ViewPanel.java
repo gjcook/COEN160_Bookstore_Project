@@ -1,4 +1,5 @@
 import javax.swing.BorderFactory;
+import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.List;
@@ -45,5 +46,6 @@ public class ViewPanel extends JPanel {
 		for(Book b : results) {
 			add(new CondensedBookPanel(b, query));
 		}
+		setPreferredSize(new Dimension(400,125*results.size()));
 	}
 }

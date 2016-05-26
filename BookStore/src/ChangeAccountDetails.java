@@ -3,6 +3,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -68,6 +69,8 @@ public class ChangeAccountDetails extends JPanel {
 		add(_secretAnswerLabel);
 		add(_secretAnswer);
 		add(_submit);
+		
+		setPreferredSize(new Dimension(400,600));
 		
 		configureBackButtonObserver();
 		configureSubmitObserver();

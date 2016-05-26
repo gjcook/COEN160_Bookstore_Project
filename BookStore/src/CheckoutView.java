@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -59,6 +60,8 @@ public class CheckoutView extends JPanel {
 		add(_CCYear);
 		add(_placeOrder);
 		add(_cancel);
+		
+		setPreferredSize(new Dimension(400,600));
 		
 		configurePlaceOrderObserver();
 		configureCancelOrderObserver();
