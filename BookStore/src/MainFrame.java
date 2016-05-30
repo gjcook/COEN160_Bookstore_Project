@@ -1,11 +1,9 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +14,6 @@ public class MainFrame extends JFrame {
 	//Menu Bar and Search Bar
 	private JMenuBar _menuBar;
 	
-	private JPanel _navPanel;
 	private JTextField _searchField;
 	private JButton _searchButton;
 	

@@ -1,8 +1,6 @@
 import java.util.List;
-import java.lang.System;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 
 public class Sys {

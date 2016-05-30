@@ -1,9 +1,7 @@
-import javax.swing.BorderFactory;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.List;
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 

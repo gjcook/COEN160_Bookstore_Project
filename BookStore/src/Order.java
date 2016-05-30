@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList; 
-import java.lang.System;
 
 public class Order {
 	private List<Book> _orderContents;
@@ -29,7 +28,7 @@ public class Order {
 			String CCCode,
 			String CCMonth,
 			String CCYear) {
-		_orderContents = new ArrayList(orderContents);
+		_orderContents = new ArrayList<Book>(orderContents);
 		_subTotal = subTotal;
 		_tax = tax;
 		_total = total;

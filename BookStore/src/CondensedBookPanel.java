@@ -3,14 +3,11 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 
