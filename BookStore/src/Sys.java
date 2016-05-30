@@ -3,7 +3,6 @@ import java.lang.System;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 
 
 public class Sys {
